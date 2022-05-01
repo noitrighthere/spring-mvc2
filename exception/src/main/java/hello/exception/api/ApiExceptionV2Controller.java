@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class ApiExceptionV2Controller {
 
+    /*
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(IllegalArgumentException.class)
     public ErrorResult illegalExHandler(IllegalArgumentException e) {
@@ -33,6 +34,7 @@ public class ApiExceptionV2Controller {
         log.error("[ExceptionHandler] ex");
         return new ErrorResult("EX", "내부 오류");
     }
+    */
 
     @GetMapping("/api2/members/{id}")
     public MemberDto getMember(@PathVariable("id") String id) {
