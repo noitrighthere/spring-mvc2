@@ -61,7 +61,7 @@ public class ItemController {
 
     @ResponseBody
     @GetMapping("images/{filename}")
-    public Resource downloadIamge(@PathVariable String filename) throws MalformedURLException {
+    public Resource downloadImage(@PathVariable String filename) throws MalformedURLException {
         return new UrlResource("file:" + fileStore.getFullPath(filename));
     }
 
