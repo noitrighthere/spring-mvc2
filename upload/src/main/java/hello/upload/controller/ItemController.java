@@ -58,29 +58,5 @@ public class ItemController {
         model.addAttribute("item", item);
         return "item-view";
     }
-
-    @ResponseBody
-    @GetMapping("images/{filename}")
-    public Resource downloadIamge(@PathVariable String filename) throws MalformedURLException {
-        return new UrlResource("file:" + fileStore.getFullPath(filename));
-    }
-
-    @GetMapping("/attach/{itemId}")
-    public ResponseEntity<Resource> downloadAttach(@PathVariable Long itemId) throws MalformedURLException {
-        Item item = itemRepository.findById(itemId); // 아무나 다운 받지 않게 하기 위함
-        String storeFileName = item.getAttachFile().getStoreFileName();
-        String uploadFileName = item.getAttachFile().getUploadFileName();
-
-        UrlResource resource = new UrlResource("file:" + fileStore.getFullPath(storeFileName));
-
-        log.info("uploadFileName={}", uploadFileName);
-
-        String encodedUploadFileName = UriUtils.encode(uploadFileName, StandardCharsets.UTF_8); // 파일이름이 깨지지 않게 함
-        String contentDisposition = "attachment; filename=\"" + encodedUploadFileName + "\"";
-
-        return ResponseEntity.ok()
-                .header(HttpHeaders.CONTENT_DISPOSITION, contentDisposition)
-                .body(resource);
-    }
-
+z
 }
