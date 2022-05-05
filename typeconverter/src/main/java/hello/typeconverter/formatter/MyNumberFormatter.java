@@ -8,7 +8,7 @@ import java.text.ParseException;
 import java.util.Locale;
 
 @Slf4j
-public class MyNumberFormatter implements Formatter {
+public class MyNumberFormatter implements Formatter<Number> {
 
     @Override
     public Number parse(String text, Locale locale) throws ParseException {
@@ -18,7 +18,7 @@ public class MyNumberFormatter implements Formatter {
     }
 
     @Override
-    public String print(Object object, Locale locale) {
+    public String print(Number object, Locale locale) {
         log.info("object={}, locale={}", object, locale);
         return NumberFormat.getInstance(locale).format(object);
     }
